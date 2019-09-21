@@ -1,6 +1,7 @@
 package me.atticuszambrana.console.module.information;
 
 import me.atticuszambrana.console.center.CommandCenter;
+import me.atticuszambrana.console.center.PermissionCenter;
 import me.atticuszambrana.console.common.Module;
 
 public class HelpCommand extends Module {
@@ -34,11 +35,14 @@ public class HelpCommand extends Module {
 		
 		for(Module m : CommandCenter.getModules()) {
 			
-			if(m.getType() == ModuleType.COMMAND) {
-				System.out.println("=====================");
-				System.out.println(m.getName());
-				System.out.println(m.getDescription());
-				System.out.println("=====================");
+			// This will make sure that the user only knows about the commands, they have access to
+			if(PermissionCenter.Has(PermissionCenter.getRank(), m.getRankRequired())) {
+				if(m.getType() == ModuleType.COMMAND) {
+					System.out.println("=====================");
+					System.out.println(m.getName());
+					System.out.println(m.getDescription());
+					System.out.println("=====================");
+				}
 			}
 			
 		}

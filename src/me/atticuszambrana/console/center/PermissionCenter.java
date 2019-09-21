@@ -38,6 +38,11 @@ public class PermissionCenter {
 		return;
 	}
 	
+	public static boolean Has(Rank myRank, Rank requiredRank) {
+		if(myRank.getLevel() >= requiredRank.getLevel()) { return true; }
+		return false;
+	}
+	
 	public static Rank getRank() {
 		return rank;
 	}
